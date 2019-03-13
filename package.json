@@ -1,0 +1,28 @@
+{
+  "name": "spotifyproject",
+  "version": "1.0.0",
+  "description": "Testing",
+  "dependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-scripts": "2.1.8",
+    "spotify-web-api-js": "^0.22.1"
+  },
+  "scripts": {
+    "start": "node authserver/authorization_code/app.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neilmckibben-osu/Spotify-project.git"
+  },
+  "author": "neil mckibben",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neilmckibben-osu/Spotify-project/issues"
+  },
+  "homepage": "https://github.com/neilmckibben-osu/Spotify-project#readme"
+}
