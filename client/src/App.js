@@ -18,10 +18,10 @@ class App extends Component {
       nowPlaying: { name: 'Not Checked', albumArt: '' },
       topArtists: { one: 'Not checked'}
     }
-    var topArtistInfo = new Map();
+    var topArtistMap = new Map();
   }
   
-  topArtistInfo(name, ranking, popularity, url)
+  TopArtistInfo(name, ranking, popularity, url)
   {
     this.name = name;
     this.ranking = ranking;
@@ -52,7 +52,7 @@ class App extends Component {
       })
   }
 
-  getTopArtist(){
+  getTopArtist(maxArtists, time_range){
     spotifyApi.getMyTopArtists()
       .then((response) => {
         this.setState({
@@ -60,6 +60,11 @@ class App extends Component {
               one: response.items[0].name
             }
         });
+        for(var i = 0; i < maxArtists; i++)
+        {
+          var artistInfo = {name: response.items[i].name, rank: i, popularity: response.items[i].popularity, artistUrl: response.items[i].external_urls}
+          this.topArtistInfo.set(i, artistInfo)
+        }
       })    
   }
   render() {
