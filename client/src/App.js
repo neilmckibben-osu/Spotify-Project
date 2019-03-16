@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import SpotifyWebApi from 'spotify-web-api-js';
+import * as SpotifyWebApi from 'spotify-web-api-js';
+
+//Create tyoe that holds the Artist name, ranking, popularity, and url to the artist
 
 const spotifyApi = new SpotifyWebApi();
-
 class App extends Component {
   constructor(){
     super();
@@ -14,8 +15,18 @@ class App extends Component {
     }
     this.state = {
       loggedIn: token ? true : false,
-      nowPlaying: { name: 'Not Checked', albumArt: '' }
+      nowPlaying: { name: 'Not Checked', albumArt: '' },
+      topArtists: { one: 'Not checked'}
     }
+    var topArtistInfo = new Map();
+  }
+  
+  topArtistInfo(name, ranking, popularity, url)
+  {
+    this.name = name;
+    this.ranking = ranking;
+    this.popularity = popularity;
+    this.url = url;
   }
   getHashParams() {
     var hashParams = {};
@@ -40,6 +51,17 @@ class App extends Component {
         });
       })
   }
+
+  getTopArtist(){
+    spotifyApi.getMyTopArtists()
+      .then((response) => {
+        this.setState({
+          topArtists: { 
+              one: response.items[0].name
+            }
+        });
+      })    
+  }
   render() {
     return (
       <div className="App">
@@ -48,11 +70,19 @@ class App extends Component {
           Now Playing: { this.state.nowPlaying.name }
         </div>
         <div>
+          Top Artist: { this.state.topArtists.one}
+        </div>
+        <div>
           <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }}/>
         </div>
         { this.state.loggedIn &&
           <button onClick={() => this.getNowPlaying()}>
             Check Now Playing
+          </button>
+        }
+        { this.state.loggedIn &&
+          <button onClick={() => this.getTopArtist()}>
+            Check Top Artist
           </button>
         }
       </div>
