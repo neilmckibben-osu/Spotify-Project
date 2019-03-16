@@ -52,8 +52,8 @@ class App extends Component {
       })
   }
 
-  getTopArtist(maxArtists, time_range){
-    spotifyApi.getMyTopArtists()
+  getTopArtist(maxArtists, timeRange){
+    spotifyApi.getMyTopArtists({limit: maxArtists, offset: 0, time_range: timeRange})
       .then((response) => {
         this.setState({
           topArtists: { 
@@ -86,10 +86,13 @@ class App extends Component {
           </button>
         }
         { this.state.loggedIn &&
-          <button onClick={() => this.getTopArtist()}>
+          <button onClick={() => this.getTopArtist(20, 'medium_term')}>
             Check Top Artist
           </button>
         }
+        <ul>
+          {this.topArtistMap}
+        </ul>
       </div>
     );
   }
