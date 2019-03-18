@@ -2,10 +2,9 @@
   "name": "spotifyproject",
   "version": "1.0.0",
   "description": "Testing",
-
   "scripts": {
     "test": "react-scripts test"
-    },
+  },
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -16,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/neilmckibben-osu/Spotify-project/issues"
   },
-  "homepage": "https://github.com/neilmckibben-osu/Spotify-project#readme"
+  "homepage": "https://github.com/neilmckibben-osu/Spotify-project#readme",
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
 }
