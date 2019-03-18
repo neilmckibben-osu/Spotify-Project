@@ -1,61 +1,61 @@
 // /backend/data.js
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-//Create tyoe that holds the Artist name, ranking, popularity, and url to the artist
+//Create tyoe that holds the Artist name, ranking, Number, and url to the artist
 // this will be our data base's data structure 
 const DataSchema = new Schema(
   {
     id: spotifyUserID,
     topArtistInfo: {
                         1:{
-                            artistName: name,
-                            artistPopularity: popularity,
-                            artistUrl = url
+                            name: String,
+                            pop: Number,
+                            url = String
                         },
                         2:{
-                            artistName: name,
-                            artistPopularity: popularity,
-                            artistUrl = url
+                            name: String,
+                            pop: Number,
+                            url = String
                         },
                         3:{
-                            artistName: name,
-                            artistPopularity: popularity,
-                            artistUrl = url
+                            name: String,
+                            pop: Number,
+                            url = String
                         },
                         4:{
-                            artistName: name,
-                            artistPopularity: popularity,
-                            artistUrl = url
+                            name: String,
+                            pop: Number,
+                            url = String
                         },
                         5:{
-                            artistName: name,
-                            artistPopularity: popularity,
-                            artistUrl = url
+                            name: String,
+                            pop: Number,
+                            url = String
                         },
                         6:{
-                            artistName: name,
-                            artistPopularity: popularity,
-                            artistUrl = url
+                            name: String,
+                            pop: Number,
+                            url = String
                         },
                         7:{
-                            artistName: name,
-                            artistPopularity: popularity,
-                            artistUrl = url
+                            name: String,
+                            pop: Number,
+                            url = String
                         },
                         8:{
-                            artistName: name,
-                            artistPopularity: popularity,
-                            artistUrl = url
+                            name: String,
+                            pop: Number,
+                            url = String
                         },
                         9:{
-                            artistName: name,
-                            artistPopularity: popularity,
-                            artistUrl = url
+                            name: String,
+                            pop: Number,
+                            url = String
                         },
                         10:{
-                            artistName: name,
-                            artistPopularity: popularity,
-                            artistUrl = url
+                            name: String,
+                            pop: Number,
+                            url = String
                         }
                    }
 
