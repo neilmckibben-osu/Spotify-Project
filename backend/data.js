@@ -10,52 +10,52 @@ const DataSchema = new Schema(
                         1:{
                             name: String,
                             pop: Number,
-                            url = String
+                            url: String
                         },
                         2:{
                             name: String,
                             pop: Number,
-                            url = String
+                            url: String
                         },
                         3:{
                             name: String,
                             pop: Number,
-                            url = String
+                            url: String
                         },
                         4:{
                             name: String,
                             pop: Number,
-                            url = String
+                            url: String
                         },
                         5:{
                             name: String,
                             pop: Number,
-                            url = String
+                            url: String
                         },
                         6:{
                             name: String,
                             pop: Number,
-                            url = String
+                            url: String
                         },
                         7:{
                             name: String,
                             pop: Number,
-                            url = String
+                            url: String
                         },
                         8:{
                             name: String,
                             pop: Number,
-                            url = String
+                            url: String
                         },
                         9:{
                             name: String,
                             pop: Number,
-                            url = String
+                            url: String
                         },
                         10:{
                             name: String,
                             pop: Number,
-                            url = String
+                            url: String
                         }
                    }
 
