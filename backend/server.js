@@ -8,7 +8,7 @@ const API_PORT = 3001;
 const app = express();
 const router = express.Router();
 
-// this is our MongoDB database
+// this is our MongoDB database. Be sure to whitelist ip adresses.
 const dbRoute = "mongodb+srv://neilmckibben:H0g*$aP0f5CR@spotify-project-d70va.mongodb.net/test?retryWrites=true";
 
 // connects our back end code with the database
