@@ -121,13 +121,20 @@ class App extends Component {
     });
   };
   
-  TopArtistInfo(name, ranking, popularity, url)
+  TopArtistInfo(ArtistName, artistRanking, artistPopularity, artistUrl)
   {
-    this.name = name;
-    this.ranking = ranking;
-    this.popularity = popularity;
-    this.url = url;
+    this.setState({
+      topArtistInfo: {
+        artistRanking:{ 
+          name: ArtistName, 
+          pop: artistPopularity, 
+          url: artistUrl 
+        }
+      }    
+    });
+
   }
+
   getHashParams() {
     var hashParams = {};
     var e, r = /([^&;=]+)=?([^&;]*)/g,
