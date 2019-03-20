@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import * as SpotifyWebApi from 'spotify-web-api-js';
+import axios from "axios";
 
 //Create tyoe that holds the Artist name, ranking, popularity, and url to the artist
 
@@ -14,11 +15,36 @@ class App extends Component {
       spotifyApi.setAccessToken(token);
     }
     this.state = {
+      data: [],
+      id: 0,
+      message: null,
+      intervalIsSet: false,
+      idToDelete: null,
+      idToUpdate: null,
+      objectToUpdate: null,
       loggedIn: token ? true : false,
       nowPlaying: { name: 'Not Checked', albumArt: '' },
-      topArtists: { one: 'Not checked'}
     }
-    var topArtistMap = new Map();
+  }
+
+  // when component mounts, first thing it does is fetch all existing data in our db
+  // then we incorporate a polling logic so that we can easily see if our db has 
+  // changed and implement those changes into our UI
+  componentDidMount() {
+    this.getDataFromDb();
+    if (!this.state.intervalIsSet) {
+      let interval = setInterval(this.getDataFromDb, 1000);
+      this.setState({ intervalIsSet: interval });
+    }
+  }
+
+  // never let a process live forever 
+  // always kill a process everytime we are done using it
+  componentWillUnmount() {
+    if (this.state.intervalIsSet) {
+      clearInterval(this.state.intervalIsSet);
+      this.setState({ intervalIsSet: null });
+    }
   }
   
   TopArtistInfo(name, ranking, popularity, url)
@@ -38,6 +64,15 @@ class App extends Component {
        e = r.exec(q);
     }
     return hashParams;
+  }
+
+  getUserID(){
+    spotifyApi.getMe()
+      .then((response) => {
+        this.setState({
+          id: response.id
+        });
+      })
   }
 
   getNowPlaying(){
