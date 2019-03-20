@@ -171,15 +171,9 @@ class App extends Component {
   getTopArtist(maxArtists, timeRange){
     spotifyApi.getMyTopArtists({limit: maxArtists, offset: 0, time_range: timeRange})
       .then((response) => {
-        this.setState({
-          topArtists: { 
-              one: response.items[0].name
-            }
-        });
         for(var i = 0; i < maxArtists; i++)
         {
-          var artistInfo = {name: response.items[i].name, rank: i, popularity: response.items[i].popularity, artistUrl: response.items[i].external_urls}
-          this.topArtistInfo.set(i, artistInfo)
+          this.TopArtistInfo(response.items[i].name, i, response.items[i].popularity, response.items[i].external_urls)
         }
       })    
   }
