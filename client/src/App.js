@@ -16,7 +16,7 @@ class App extends Component {
     }
     this.state = {
       data: [],
-      id: 0,
+      id: 'null',
       message: null,
       intervalIsSet: false,
       idToDelete: null,
@@ -64,7 +64,7 @@ class App extends Component {
   // to create new query into our data base
   putDataToDB = message => {
     let currentIds = this.state.data.map(data => data.id);
-    let idToBeAdded = 0;
+    let idToBeAdded = this.state.id;
     while (currentIds.includes(idToBeAdded)) {
       ++idToBeAdded;
     }
@@ -109,6 +109,7 @@ class App extends Component {
       update: { message: updateToApply }
     });
   };
+  
   TopArtistInfo(name, ranking, popularity, url)
   {
     this.name = name;
@@ -170,9 +171,6 @@ class App extends Component {
         <a href='http://localhost:8888' > Login to Spotify </a>
         <div>
           Now Playing: { this.state.nowPlaying.name }
-        </div>
-        <div>
-          Top Artist: { this.state.topArtists.one}
         </div>
         <div>
           <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }}/>
