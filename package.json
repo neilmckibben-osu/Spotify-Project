@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Testing",
   "scripts": {
-    "test": "react-scripts test"
+    "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\" \"cd authserver/authorization_code/ && node app.js\""
   },
   "main": "index.js",
   "repository": {
