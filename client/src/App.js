@@ -17,7 +17,18 @@ class App extends Component {
     this.state = {
       data: [],
       id: 'null',
-      message: null,
+      topArtistInfo: {
+        1:{ name: String, pop: Number, url: String },
+        2:{ name: String, pop: Number, url: String },
+        3:{ name: String, pop: Number, url: String },
+        4:{ name: String, pop: Number, url: String },
+        5:{ name: String, pop: Number, url: String },
+        6:{ name: String, pop: Number, url: String },
+        7:{ name: String, pop: Number, url: String },
+        8:{ name: String, pop: Number, url: String },
+        9:{ name: String, pop: Number, url: String },
+        10:{ name: String, pop: Number, url: String }
+   },
       intervalIsSet: false,
       idToDelete: null,
       idToUpdate: null,
@@ -62,7 +73,7 @@ class App extends Component {
 
   // our put method that uses our backend api
   // to create new query into our data base
-  putDataToDB = message => {
+  putDataToDB = topArtistInfo => {
     let currentIds = this.state.data.map(data => data.id);
     let idToBeAdded = this.state.id;
     while (currentIds.includes(idToBeAdded)) {
@@ -71,7 +82,7 @@ class App extends Component {
 
     axios.post("http://localhost:3001/api/putData", {
       id: idToBeAdded,
-      message: message
+      topArtistInfo: topArtistInfo
     });
   };
 
@@ -106,7 +117,7 @@ class App extends Component {
 
     axios.post("http://localhost:3001/api/updateData", {
       id: objIdToUpdate,
-      update: { message: updateToApply }
+      update: { topArtistInfo: updateToApply }
     });
   };
   
@@ -185,9 +196,6 @@ class App extends Component {
             Check Top Artist
           </button>
         }
-        <ul>
-          {this.topArtistMap}
-        </ul>
       </div>
     );
   }
