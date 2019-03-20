@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Testing",
   "scripts": {
-    "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\" \"cd authserver/authorization_code/ && node app.js\""
   },
   "main": "index.js",
   "repository": {
@@ -19,5 +18,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "concurrently": "^4.1.0"
-  }
+  },
+  "devDependencies": {},
+  "keywords": []
 }
