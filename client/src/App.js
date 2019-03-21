@@ -92,7 +92,7 @@ class App extends Component {
   deleteFromDB = idTodelete => {
     let objIdToDelete = null;
     this.state.data.forEach(dat => {
-      if (dat.id == idTodelete) {
+      if (dat.id === idTodelete) {
         objIdToDelete = dat._id;
       }
     });
@@ -110,7 +110,7 @@ class App extends Component {
   updateDB = (idToUpdate, updateToApply) => {
     let objIdToUpdate = null;
     this.state.data.forEach(dat => {
-      if (dat.id == idToUpdate) {
+      if (dat.id === idToUpdate) {
         objIdToUpdate = dat._id;
       }
     });
@@ -173,16 +173,25 @@ class App extends Component {
       .then((response) => {
         for(var i = 0; i < maxArtists; i++)
         {
-          this.TopArtistInfo(response.items[i].name, i, response.items[i].popularity, response.items[i].external_urls)
+          this.TopArtistInfo(response.items[i].name, (i+1), response.items[i].popularity, response.items[i].external_urls)
         }
+        this.putDataToDB(this.state.topArtistInfo)
       })    
   }
   render() {
+    const { data } = this.state;
     return (
       <div className="App">
         <a href='http://localhost:8888' > Login to Spotify </a>
         <div>
           Now Playing: { this.state.nowPlaying.name }
+        </div>
+
+        <div>
+          UserID: = {this.state.id}
+        </div>
+        <div>
+          Tenth Artist: = {this.state.loggedIn ? this.state.topArtistInfo[10].name : 'Not checked'}
         </div>
         <div>
           <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }}/>
@@ -192,11 +201,28 @@ class App extends Component {
             Check Now Playing
           </button>
         }
+        
         { this.state.loggedIn &&
-          <button onClick={() => this.getTopArtist(20, 'medium_term')}>
-            Check Top Artist
+          <button onClick={() => this.getTopArtist(10, 'medium_term')}>
+            Check Top Artists
           </button>
         }
+
+        <div>
+        <ul>
+          {data.length <= 0
+            ? "NO DB ENTRIES YET"
+            : data.map(dat => (
+                <li style={{ padding: "10px" }} key={data.message}>
+                  <span style={{ color: "gray" }}> id: </span> {dat.id} <br />
+                  <span style={{ color: "gray" }}> data: </span>
+                  {dat.topArtistInfo}
+                </li>
+              ))}
+        </ul>
+        </div>
+
+
       </div>
     );
   }
