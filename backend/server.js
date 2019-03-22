@@ -65,7 +65,7 @@ router.post("/putData", (req, res) => {
   let data = new Data();
 
   const { id, topArtistInfo } = req.body;
-
+  console.log(req.body)
   if ((!id && id !== 0) || !topArtistInfo) {
     return res.json({
       success: false,

@@ -34,6 +34,7 @@ class App extends Component {
       idToUpdate: null,
       objectToUpdate: null,
       loggedIn: token ? true : false,
+      userInfo: token ? true : false,
       nowPlaying: { name: 'Not Checked', albumArt: '' },
     }
   }
@@ -74,14 +75,8 @@ class App extends Component {
   // our put method that uses our backend api
   // to create new query into our data base
   putDataToDB = topArtistInfo => {
-    let currentIds = this.state.data.map(data => data.id);
-    let idToBeAdded = this.state.id;
-    while (currentIds.includes(idToBeAdded)) {
-      ++idToBeAdded;
-    }
-
     axios.post("http://localhost:3001/api/putData", {
-      id: idToBeAdded,
+      id: this.state.id,
       topArtistInfo: topArtistInfo
     });
   };
@@ -171,10 +166,27 @@ class App extends Component {
   getTopArtist(maxArtists, timeRange){
     spotifyApi.getMyTopArtists({limit: maxArtists, offset: 0, time_range: timeRange})
       .then((response) => {
-        for(var i = 0; i < maxArtists; i++)
-        {
-          this.TopArtistInfo(response.items[i].name, (i+1), response.items[i].popularity, response.items[i].external_urls)
-        }
+        this.getUserID()
+        this.setState({
+          nowPlaying: { 
+              userInfo: true, 
+            }
+        });
+        this.setState({
+          topArtistInfo: { 
+            1:{ name: response.items[0].name, pop: response.items[0].popularity, url: response.items[0].external_urls },
+            2:{ name: response.items[1].name, pop: response.items[1].popularity, url: response.items[1].external_urls },
+            3:{ name: response.items[2].name, pop: response.items[2].popularity, url: response.items[2].external_urls },
+            4:{ name: response.items[3].name, pop: response.items[3].popularity, url: response.items[3].external_urls },
+            5:{ name: response.items[4].name, pop: response.items[4].popularity, url: response.items[4].external_urls },
+            6:{ name: response.items[5].name, pop: response.items[5].popularity, url: response.items[5].external_urls },
+            7:{ name: response.items[6].name, pop: response.items[6].popularity, url: response.items[6].external_urls },
+            8:{ name: response.items[7].name, pop: response.items[7].popularity, url: response.items[7].external_urls },
+            9:{ name: response.items[8].name, pop: response.items[8].popularity, url: response.items[8].external_urls },
+            10:{ name: response.items[9].name, pop: response.items[9].popularity, url: response.items[9].external_urls }
+
+            }
+        });
         this.putDataToDB(this.state.topArtistInfo)
       })    
   }
@@ -191,7 +203,7 @@ class App extends Component {
           UserID: = {this.state.id}
         </div>
         <div>
-          Tenth Artist: = {this.state.loggedIn ? this.state.topArtistInfo[10].name : 'Not checked'}
+          Tenth Artist: = {this.state.userInfo ? this.state.topArtistInfo[10].name : 'Not checked'}
         </div>
         <div>
           <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }}/>
